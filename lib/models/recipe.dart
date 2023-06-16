@@ -16,4 +16,9 @@ class Recipe {
     required this.thumbnailUrl,
     required this.ingredients,
   });
+
+String get description{
+  return "This meal originates from " + area + " and goes by the name of " + name;
+}
+
 }
