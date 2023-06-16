@@ -48,7 +48,7 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(recipes[index].name),
-            subtitle: Text(recipes[index].description),
+            subtitle: Text(recipes[index].getDescription()),
           );
         },
       ),
