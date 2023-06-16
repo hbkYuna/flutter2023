@@ -17,6 +17,7 @@ class Recipe {
     required this.ingredients,
   });
 
+// Constructor om Recipe instantie te maken van API data. 
   factory Recipe.fromJson(Map<String, dynamic> json) {
     return Recipe(
       id: json['idMeal'],
@@ -28,6 +29,10 @@ class Recipe {
       ingredients: _extractIngredients(json),
     );
   }
+
+// Haalt ingredienten met maten uit de API en voegt ze samen in een lijst
+// Kijk naar voobeeld van een recipe om te begrijpen waarom dit nodig is. 
+// www.themealdb.com/api/json/v1/1/random.php (ga naar deze link in browser)
 
   static List<String> _extractIngredients(Map<String, dynamic> json) {
     final ingredients = <String>[];
@@ -47,6 +52,7 @@ class Recipe {
     return ingredients;
   }
 
+// Aangezien er geen korte berschrijving van een recipe is maken we dit even zelf. 
   String getDescription() {
     return "This meal originates from $area and goes by the name of $name";
   }
