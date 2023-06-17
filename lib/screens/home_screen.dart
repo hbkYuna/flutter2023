@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // Navigate to the recipe list screen
-                Navigator.pushNamed(context, '/recipe_list_screen');
+                Navigator.pushNamed(context, '/recipe-list');
               },
               child: Text('View Recipes'),
             ),

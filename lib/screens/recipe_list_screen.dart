@@ -37,20 +37,94 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
     ),
   ];
 
+  String nameFilter = '';
+  String? areaFilter;
+  bool showFilters = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Recipes'),
       ),
-      body: ListView.builder(
-        itemCount: recipes.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(recipes[index].name),
-            subtitle: Text(recipes[index].getDescription()),
-          );
-        },
+      body: Column(
+        children: [
+          AnimatedContainer(
+            duration: Duration(milliseconds: 300),
+            height: showFilters ? 120.0 : 0.0,
+            padding: EdgeInsets.all(16.0),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Filter by Name',
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        nameFilter = value;
+                      });
+                    },
+                  ),
+                  SizedBox(height: 16.0),
+                  DropdownButtonFormField<String?>(
+                    value: areaFilter,
+                    decoration: InputDecoration(
+                      labelText: 'Filter by Area',
+                    ),
+                    items: <String?>[
+                      null,
+                      'Area 1',
+                      'Area 2',
+                      'Area 3',
+                    ].map<DropdownMenuItem<String?>>((String? value) {
+                      return DropdownMenuItem<String?>(
+                        value: value,
+                        child: Text(value ?? 'All Areas'),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        areaFilter = value;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    showFilters = !showFilters;
+                  });
+                },
+                child: Text(showFilters ? 'Hide Filters' : 'Show Filters'),
+              ),
+            ],
+          ),
+          SizedBox(height: 16.0),
+          Expanded(
+            child: ListView.builder(
+              itemCount: recipes.length,
+              itemBuilder: (context, index) {
+                final recipe = recipes[index];
+                if (recipe.name.toLowerCase().contains(nameFilter.toLowerCase()) &&
+                    (areaFilter == null || recipe.area == areaFilter)) {
+                  return ListTile(
+                    title: Text(recipe.name),
+                    subtitle: Text(recipe.getDescription()),
+                  );
+                } else {
+                  return Container();
+                }
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
