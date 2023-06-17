@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_herexamen_noah2023/models/recipe.dart';
+import 'package:flutter_herexamen_noah2023/screens/recipe_details_screen.dart';
 
 class RecipeListScreen extends StatefulWidget {
   @override
@@ -49,24 +50,26 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
       ),
       body: Column(
         children: [
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: 'Filter by Name',
+              ),
+              onChanged: (value) {
+                setState(() {
+                  nameFilter = value;
+                });
+              },
+            ),
+          ),
           AnimatedContainer(
             duration: Duration(milliseconds: 300),
             height: showFilters ? 120.0 : 0.0,
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Filter by Name',
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        nameFilter = value;
-                      });
-                    },
-                  ),
-                  SizedBox(height: 16.0),
                   DropdownButtonFormField<String?>(
                     value: areaFilter,
                     decoration: InputDecoration(
@@ -114,9 +117,27 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
                 final recipe = recipes[index];
                 if (recipe.name.toLowerCase().contains(nameFilter.toLowerCase()) &&
                     (areaFilter == null || recipe.area == areaFilter)) {
-                  return ListTile(
-                    title: Text(recipe.name),
-                    subtitle: Text(recipe.getDescription()),
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          pageBuilder: (context, animation, secondaryAnimation) {
+                            return RecipeDetailScreen(recipe: recipe);
+                          },
+                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    child: ListTile(
+                      title: Text(recipe.name),
+                      subtitle: Text(recipe.getDescription()),
+                    ),
                   );
                 } else {
                   return Container();
