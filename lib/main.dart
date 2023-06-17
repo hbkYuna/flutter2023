@@ -8,7 +8,25 @@ void main() {
   runApp(RecipeApp());
 }
 
-class RecipeApp extends StatelessWidget {
+class RecipeApp extends StatefulWidget {
+  @override
+  _RecipeAppState createState() => _RecipeAppState();
+}
+
+class _RecipeAppState extends State<RecipeApp> {
+  int _selectedIndex = 0;
+
+  static List<Widget> _pages = <Widget>[
+    HomeScreen(),
+    RecipeListScreen(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,11 +34,23 @@ class RecipeApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => HomeScreen(),
-        '/recipe-list': (context) => RecipeListScreen(),
-      },
+      home: Scaffold(
+        body: _pages[_selectedIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.list),
+              label: 'Recipes',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+        ),
+      ),
       onGenerateRoute: (settings) {
         if (settings.name == '/recipeDetail') {
           final recipe = settings.arguments as Recipe;
