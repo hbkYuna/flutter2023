@@ -126,7 +126,7 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
                     padding: EdgeInsets.all(16.0),
                     child: LinearProgressIndicator(
                       minHeight: 4.0,
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.red), // Change the color here
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.red), 
                       backgroundColor: Colors.grey[300],
                     ),
                   )

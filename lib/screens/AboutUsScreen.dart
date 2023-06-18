@@ -55,8 +55,8 @@ class AboutUsScreen extends StatelessWidget {
                     title: Text('More about me'),
                     content: Text(
                       'I am Noah, a 23-year-old Computer Scientist who is passionate about Linux, Open-source applications, and Automation. '
-                      'I am close to finishing my Associate Degree in programming and will pursue a Bachelor\'s degree after that. I have to say i really' 
-                      'dont enjoy making Web and Mobile applications but creating this app has been more fun than i expected, even with its shortcomings.',
+                      'I am close to finishing my Associate Degree in programming and will pursue a Bachelor\'s degree after that. I have to say I really '
+                      'don\'t enjoy making Web and Mobile applications but creating this app has been more fun than I expected, even with its shortcomings.',
                       style: TextStyle(fontSize: 16.0),
                     ),
                     actions: <Widget>[
@@ -77,23 +77,35 @@ class AboutUsScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 16.0),
-          TextButton(
-            onPressed: () {
-              // Open LinkedIn profile link
-            },
-            child: Text(
-              'LinkedIn: https://be.linkedin.com/in/noahhaberkorn',
-              style: TextStyle(fontSize: 16.0),
+          RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: 'My GitHub:\n',
+                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                ),
+                TextSpan(
+                  text: 'https://github.com/hbkYuna',
+                  style: TextStyle(fontSize: 16.0, color: Colors.blue),
+                  // },
+                ),
+              ],
             ),
           ),
           SizedBox(height: 8.0),
-          TextButton(
-            onPressed: () {
-              // Open GitHub profile link
-            },
-            child: Text(
-              'GitHub: https://github.com/hbkYuna',
-              style: TextStyle(fontSize: 16.0),
+          RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: 'My LinkedIn:\n',
+                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                ),
+                TextSpan(
+                  text: 'https://be.linkedin.com/in/noahhaberkorn',
+                  style: TextStyle(fontSize: 16.0, color: Colors.blue),
+                  // },
+                ),
+              ],
             ),
           ),
         ],
