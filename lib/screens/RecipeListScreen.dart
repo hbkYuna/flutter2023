@@ -3,6 +3,10 @@ import 'package:flutter_herexamen_noah2023/models/recipe.dart';
 import 'package:flutter_herexamen_noah2023/screens/recipe_details_screen.dart';
 
 class RecipeListScreen extends StatefulWidget {
+  final String category;
+
+  RecipeListScreen({required this.category});
+
   @override
   _RecipeListScreenState createState() => _RecipeListScreenState();
 }
@@ -12,7 +16,7 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
     Recipe(
       id: '1',
       name: 'Recipe 1',
-      category: 'Category 1',
+      category: 'Main Courses',
       area: 'Area 1',
       instructions: 'Instructions 1',
       thumbnailUrl: 'thumbnail_url_1',
@@ -21,7 +25,7 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
     Recipe(
       id: '2',
       name: 'Recipe 2',
-      category: 'Category 2',
+      category: 'Main Courses',
       area: 'Area 2',
       instructions: 'Instructions 2',
       thumbnailUrl: 'thumbnail_url_2',
