@@ -83,9 +83,9 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
                           ),
                           items: <String?>[
                             null,
-                            'Area 1',
-                            'Area 2',
-                            'Area 3',
+                            'American',
+                            'British',
+                            'French',
                           ].map<DropdownMenuItem<String?>>((String? value) {
                             return DropdownMenuItem<String?>(
                               value: value,
@@ -121,7 +121,15 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
           SizedBox(height: 16.0),
           Expanded(
             child: isLoading
-                ? Center(child: CircularProgressIndicator()) // Replace with your desired loading indicator or skeleton screens
+                ? Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(16.0),
+                    child: LinearProgressIndicator(
+                      minHeight: 4.0,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.red), // Change the color here
+                      backgroundColor: Colors.grey[300],
+                    ),
+                  )
                 : ListView.builder(
                     itemCount: recipes.length,
                     itemBuilder: (context, index) {
