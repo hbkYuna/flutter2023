@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_herexamen_noah2023/models/recipe.dart';
-import 'package:flutter_herexamen_noah2023/screens/recipe_details_screen.dart';
+import 'package:flutter_herexamen_noah2023/screens/RecipeDetailScreen.dart';
 
 class RecipeListScreen extends StatefulWidget {
   final String category;
