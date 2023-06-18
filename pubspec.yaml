@@ -27,11 +27,12 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/flutter.png
-    - assets/images/programminglanguages.png
-    - assets/images/widgettree.png
-    - assets/images/placeholder.png
-    - assets/audio/goed.mp3
-    - assets/audio/fout.mp3
-    - assets/video/introICT.mp4
-    - assets/video/introhistory.mp4
+    - lib/assets/images/
+
+
+
+
+
+
+
+
