@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_herexamen_noah2023/screens/home_screen.dart';
-import 'package:flutter_herexamen_noah2023/screens/recipe_list_screen.dart';
-import 'package:flutter_herexamen_noah2023/screens/recipe_details_screen.dart';
+import 'package:flutter_herexamen_noah2023/screens/HomeScreen.dart';
+import 'package:flutter_herexamen_noah2023/screens/RecipeListScreen.dart';
+import 'package:flutter_herexamen_noah2023/screens/RecipeDetailScreen.dart';
 import 'package:flutter_herexamen_noah2023/models/recipe.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class _RecipeAppState extends State<RecipeApp> {
 
   static List<Widget> _pages = <Widget>[
     HomeScreen(),
-    RecipeListScreen(),
+    RecipeListScreen(category: ""),
   ];
 
   void _onItemTapped(int index) {
