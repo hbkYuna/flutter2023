@@ -9,7 +9,7 @@ class RecipeAPI {
     final url = Uri.parse('https://www.themealdb.com/api/json/v1/$apiKey/random.php');
 
     final List<Recipe> recipes = [];
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 15; i++) {
       final response = await http.get(url);
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = json.decode(response.body);
